@@ -1,0 +1,7 @@
+#! /bin/bash
+cat "$1" > output.txt
+~/Development/reactive_synthesis/build/bin/ltlf2fol "$1" NNF > spec.mona
+mona -w -u spec.mona > spec.dfa
+python3 mona2hoa.py spec.dfa > spec.hoa
+cp spec.hoa "$2"
+
