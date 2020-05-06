@@ -50,11 +50,11 @@ def getAssgnDest(state_index, assgn, t_start, t_label, t_dest):
                 if(j == len(ass)-1):
                     return t_dest[i]
 
-def convertMONAStateTransitionsToHOA(state_index, t_start, t_label, t_dest, num_AP, final_index, num_states):
+def convertMONAStateTransitionsToHOA(state_index, t_start, t_label, t_dest, num_AP, final_indices, num_states):
     lst = list(itertools.product([0, 1], repeat=num_AP))
-    if(state_index == final_index):
+    if(state_index in final_indices):
         for assgn in lst:
-            print("[ {} ] {}".format(assgnToStr(assgn), final_index))
+            print("[ {} ] {}".format(assgnToStr(assgn), final_indices[0]))
     else:
         for assgn in lst:
             print("[ {} ] {}".format(assgnToStr(assgn), getAssgnDest(state_index, assgn, t_start, t_label, t_dest)))
@@ -66,7 +66,9 @@ num_states = -1
 num_AP = -1
 AP_string = ""
 start_state = -1
-final_state = -1
+#final_state = -1
+
+final_states = []
 
 transition_start = [] #ints
 transition_label = [] #strings
@@ -85,7 +87,11 @@ for l in flines:
     elif(l.startswith("Initial state: ")):
         start_state = int(l[14:])
     elif(l.startswith("Accepting states: ")):
-        final_state = int(l[17:])
+        #final_state = int(l[17:])
+        final_states = [int(x) for x in l[17:].split()]
+        if len(final_states) == 0:
+            print("Automaton has no final (accepting) states")
+            exit()
     else:
         pass
 
@@ -103,11 +109,11 @@ print("properties: trans-labels explicit-labels state-acc no-univ-branch determi
 print("--BODY--")
 j = 0
 for i in range(num_states):
-    if(i == final_state):
+    if(i in final_states):
         print("State: {}".format(i) + " { 0 } ")
     else:
         print("State: {}".format(i))
 
-    convertMONAStateTransitionsToHOA(i, transition_start, transition_label, transition_dest, num_AP, final_state, num_states)
+    convertMONAStateTransitionsToHOA(i, transition_start, transition_label, transition_dest, num_AP, final_states, num_states)
 
 print("--END--")
