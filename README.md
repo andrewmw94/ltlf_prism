@@ -18,10 +18,10 @@ Run prism with the external automaton tool:
 # If you need just part of the pipeline
 
 To convert LTLf to First-Order Logic:
-syft ltlf2fol spec.ltlf NNF > spec.mona
+```syft ltlf2fol spec.ltlf NNF > spec.mona```
 
 To build an automaton using mona:
-mona -w -u spec.mona
+```mona -w -u spec.mona```
 
 # Older Instructions
 
@@ -34,7 +34,7 @@ Call prism with tool that feeds in our automaton.
 
 LTL pipeline:
 Create MDP and Spec.
-Translate spec to equivalent LTL formula. Using ltlfilt --from-ltlf
+Translate spec to equivalent LTL formula. Using ```ltlfilt --from-ltlf```
 Modify MDP by adding transition to terminal state from each state.
 Run prism on modified MDP and translated spec.
 
