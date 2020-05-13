@@ -1,6 +1,11 @@
 #! /bin/bash
-cat "$1" > output.txt
-~/Development/reactive_synthesis/build/bin/ltlf2fol "$1" NNF > spec.mona
+syft_path='/home/awells/Development/reactive_synthesis/build/bin/ltlf2fol'
+cat "$1" > prism_output_formula.txt
+$syft_path NNF "$1" > spec.mona
+file_size=$(stat -c%s spec.mona)
+if ((file_size < 17)); then
+    $syft_path "$1" NNF > spec.mona
+fi
 mona -w -u spec.mona > spec.dfa
 python3 mona2hoa.py spec.dfa > spec.hoa
 cp spec.hoa "$2"
