@@ -6,7 +6,7 @@ To run the example:
 
 ```cd gridworld_example```
 
-Change script to use your copy of Syft's ltlf2fol tool. E.g., change line 3 of ./hoa_mona_ltlf2dfa_for_prism to:
+Change script to use your copy of Syft's ltlf2fol tool. E.g., change line 2 of ./hoa_mona_ltlf2dfa_for_prism to:
 ```~/Development/reactive_synthesis/build/bin/ltlf2fol "$1" NNF > spec.mona```
 
 
