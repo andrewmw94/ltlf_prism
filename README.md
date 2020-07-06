@@ -23,6 +23,9 @@ To convert LTLf to First-Order Logic:
 To build an automaton using mona:
 ```mona -w -u spec.mona```
 
+# GandALF Experiments
+Representative experiments for our GandALF 2020 submission can be found [here](https://github.com/andrewmw94/gandalf_2020_experiments).
+
 # Older Instructions
 
 The original pipeline:
