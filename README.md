@@ -1,5 +1,13 @@
 # Installation
-Install PRISM, Syft (including MONA) and python3
+Install PRISM, Syft (including MONA) and python3:
+
+```sudo apt install python3 mona```
+
+In your prefered directory:
+```git clone git@github.com:prismmodelchecker/prism.git```
+
+And:
+```git clone git@github.com:saffiepig/Syft.git```
 
 # Running the example
 To run the example:
